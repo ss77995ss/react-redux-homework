@@ -9,10 +9,6 @@ const app = express();
 app.use(express.static(path.join(__dirname, '/public/index.html')));
 app.use(express.static(path.join(__dirname, '/src/client/index.js')));
 
-app.get('/', (request, response) => {
-  response.sendFile(__dirname, '/public/index.html');
-});
-
 const dbUrl = 'mongodb://localhost/crud';
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,6 +20,9 @@ mongoose.connect(dbUrl, { useNewUrlParser: true }, (dbErr) => {
   } else {
     console.log('db connected');
   }
+  app.get('/', (request, response) => {
+    response.sendFile(__dirname, '/public/index.html');
+  });
 
   app.post('/api/tabledatas', (request, response) => {
     const {
