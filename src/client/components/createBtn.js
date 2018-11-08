@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
 class CreateBtn extends React.Component {
   constructor(props) {
@@ -10,7 +9,7 @@ class CreateBtn extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
-    const { id, onClick } = this.props;
+    const { id, onClick, url } = this.props;
     const newRow = {
       seq: id,
       status: '',
@@ -19,9 +18,7 @@ class CreateBtn extends React.Component {
       owner: '',
       priority: '',
     };
-
-    axios.post('/api/tabledatas', newRow);
-    onClick(newRow);
+    onClick(url, newRow);
   }
 
   render() {
@@ -43,6 +40,7 @@ class CreateBtn extends React.Component {
 CreateBtn.propTypes = {
   id: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
+  url: PropTypes.string.isRequired,
 };
 
 export default CreateBtn;

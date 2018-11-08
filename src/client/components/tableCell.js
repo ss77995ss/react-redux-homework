@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { cellPropType } from '../types/shape';
 
 class TableCell extends React.Component {
@@ -10,14 +9,13 @@ class TableCell extends React.Component {
   }
 
   handleChange(e) {
-    const { onChange } = this.props;
-    const obj = {
+    const { onChange, url } = this.props;
+    const target = {
       id: e.target.id,
       name: e.target.name,
       value: e.target.value,
     };
-    onChange(obj);
-    axios.put('/api/tabledatas', { obj });
+    onChange(url, target);
   }
 
   render() {
@@ -37,6 +35,7 @@ class TableCell extends React.Component {
 }
 
 TableCell.propTypes = {
+  url: PropTypes.string.isRequired,
   cellData: cellPropType.isRequired,
   onChange: PropTypes.func.isRequired,
 };
