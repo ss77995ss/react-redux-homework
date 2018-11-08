@@ -2,12 +2,22 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CleanWebPackPlugin = require('clean-webpack-plugin');
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const htmlPlugin = new HtmlWebPackPlugin({
   template: './public/index.html',
   filename: 'index.html',
 });
+
+const plugins = [
+  htmlPlugin,
+  new CleanWebPackPlugin(['build']),
+  new webpack.HotModuleReplacementPlugin(),
+];
+
+if (process.env.ANALYZE === 'true') {
+  plugins.push(new BundleAnalyzerPlugin());
+}
 
 module.exports = {
   entry: {
@@ -34,12 +44,7 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    htmlPlugin,
-    new CleanWebPackPlugin(['build']),
-    new webpack.HotModuleReplacementPlugin(),
-    // new BundleAnalyzerPlugin(),
-  ],
+  plugins,
   optimization: {
     splitChunks: {
       chunks: 'all',

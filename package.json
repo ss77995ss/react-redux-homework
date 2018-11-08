@@ -5,6 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
+    "build:analyze": "ANALYZE=true webpack --config webpack.prod.js",
     "test": "jest",
     "report": "jest --coverage",
     "lint": "./node_modules/.bin/eslint src",
@@ -13,18 +14,16 @@
   },
   "proxy": "http://localhost:3000/",
   "dependencies": {
-    "@types/mongoose": "^5.2.20",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "mongoose": "^5.3.6",
     "prop-types": "^15.6.2",
-    "razzle": "^2.4.0",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
-    "uuid": "^3.3.2"
+    "redux-thunk": "^2.3.0"
   },
   "testEnvironment": "node",
   "testMatch": [
@@ -43,6 +42,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^1.0.1",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.5.0",
     "enzyme-to-json": "^3.3.4",
@@ -58,7 +58,7 @@
     "jest-cli": "^23.6.0",
     "react-test-renderer": "^16.5.0",
     "redux-mock-store": "^1.5.3",
-    "sinon": "^6.3.4",
+    "style-loader": "^0.23.1",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.21.0",
     "webpack-bundle-analyzer": "^3.0.3",
