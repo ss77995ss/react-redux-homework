@@ -4,7 +4,7 @@ import CreateBtn from '../../src/client/components/createBtn';
 
 describe('<CreateBtn />', () => {
   const mockFunc = jest.fn();
-  const wrapper = shallow(<CreateBtn id={3} onClick={mockFunc} />);
+  const wrapper = shallow(<CreateBtn id={3} onClick={mockFunc} url="/api/tabledatas" />);
 
   describe('When users connect to the website', () => {
     it('should display button', () => {

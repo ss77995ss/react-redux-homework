@@ -9,6 +9,16 @@ const htmlPlugin = new HtmlWebPackPlugin({
   filename: 'index.html',
 });
 
+const plugins = [
+  htmlPlugin,
+  new CleanWebPackPlugin(['build']),
+  new webpack.HotModuleReplacementPlugin(),
+];
+
+if (process.env.ANALYZE === 'true') {
+  plugins.push(new BundleAnalyzerPlugin());
+}
+
 module.exports = {
   entry: {
     app: './src/client/index.js',
@@ -34,12 +44,7 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    htmlPlugin,
-    new CleanWebPackPlugin(['build']),
-    new webpack.HotModuleReplacementPlugin(),
-    new BundleAnalyzerPlugin(),
-  ],
+  plugins,
   optimization: {
     splitChunks: {
       chunks: 'all',

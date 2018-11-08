@@ -9,7 +9,7 @@ describe('<TableCell />', () => {
     name: 'category',
     value: 'cat342',
   };
-  const wrapper = shallow(<TableCell cellData={mockCellData} onChange={mockFunc} />);
+  const wrapper = shallow(<TableCell cellData={mockCellData} onChange={mockFunc} url="/api/tabledatas" />);
 
   describe('When table is created', () => {
     it('should display', () => {

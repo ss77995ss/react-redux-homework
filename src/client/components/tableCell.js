@@ -9,13 +9,13 @@ class TableCell extends React.Component {
   }
 
   handleChange(e) {
-    const { onChange } = this.props;
-    const obj = {
+    const { onChange, url } = this.props;
+    const target = {
       id: e.target.id,
       name: e.target.name,
       value: e.target.value,
     };
-    onChange(obj);
+    onChange(url, target);
   }
 
   render() {
@@ -35,6 +35,7 @@ class TableCell extends React.Component {
 }
 
 TableCell.propTypes = {
+  url: PropTypes.string.isRequired,
   cellData: cellPropType.isRequired,
   onChange: PropTypes.func.isRequired,
 };

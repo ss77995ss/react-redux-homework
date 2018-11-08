@@ -6,9 +6,12 @@ import { mockData } from '../data/mockData';
 describe('<Table />', () => {
   describe('When users connect to the website', () => {
     it('should display', () => {
+      const mockFunc = jest.fn();
       const wrapper = shallow(<Table
         tableData={mockData}
         filterText="fasasfsa"
+        getTableData={mockFunc}
+        url="/api/tabledatas"
       />);
       const header = wrapper.find('thead');
       expect(header).toHaveLength(1);
@@ -22,9 +25,12 @@ describe('<Table />', () => {
   });
   describe('When filterText find matches', () => {
     it('should display', () => {
+      const mockFunc = jest.fn();
       const wrapper = shallow(<Table
         tableData={mockData}
         filterText="Sean"
+        getTableData={mockFunc}
+        url="/api/tabledatas"
       />);
       const header = wrapper.find('thead');
       expect(header).toHaveLength(1);

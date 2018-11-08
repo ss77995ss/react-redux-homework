@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 
 export const rowPropType = PropTypes.shape({
+  id: PropTypes.string,
   seq: PropTypes.number,
   status: PropTypes.string,
   category: PropTypes.string,

@@ -9,8 +9,8 @@ class DeleteBtn extends React.Component {
   }
 
   handleClick() {
-    const { target, onClick } = this.props;
-    onClick(target);
+    const { target, onClick, url } = this.props;
+    onClick(url, target);
   }
 
   render() {
@@ -23,6 +23,7 @@ class DeleteBtn extends React.Component {
 }
 
 DeleteBtn.propTypes = {
+  url: PropTypes.string.isRequired,
   target: rowPropType.isRequired,
   onClick: PropTypes.func.isRequired,
 };
