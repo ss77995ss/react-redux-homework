@@ -4,7 +4,7 @@ import DeleteBtn from '../../src/client/components/deleteBtn';
 
 describe('<DeleteBtn />', () => {
   const mockFunc = jest.fn();
-  const wrapper = shallow(<DeleteBtn target={{}} onClick={mockFunc} />);
+  const wrapper = shallow(<DeleteBtn target={{}} onClick={mockFunc} url="/api/tabledatas" />);
   describe('When table is created', () => {
     it('should have Delete button', () => {
       expect(wrapper.find('button')).toHaveLength(1);
