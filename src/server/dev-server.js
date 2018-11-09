@@ -74,12 +74,13 @@ mongoose.connect(dbUrl, { useNewUrlParser: true }, (dbErr) => {
   });
 
   app.delete('/api/tabledatas', (request, response) => {
-    const { id } = request.body;
-    TableData.deleteOne({ _id: id }, (err) => {
+    const { seq } = request.body;
+    const target = seq;
+    TableData.deleteOne({ seq: target }, (err) => {
       if (err) {
         response.status(500).send();
       } else {
-        response.status(200).send(id);
+        response.status(200).send(response.body);
       }
     });
   });

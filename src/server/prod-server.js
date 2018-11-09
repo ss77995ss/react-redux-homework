@@ -6,10 +6,9 @@ import TableData from '../models/tableData';
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '/public/index.html')));
-app.use(express.static(path.join(__dirname, '/src/client/index.js')));
+app.use(express.static(path.join(__dirname, '../../build')));
 
-const dbUrl = 'mongodb://localhost/crud';
+const dbUrl = 'mongodb://mongo/crud';
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -20,8 +19,9 @@ mongoose.connect(dbUrl, { useNewUrlParser: true }, (dbErr) => {
   } else {
     console.log('db connected');
   }
+
   app.get('/', (request, response) => {
-    response.sendFile(__dirname, '/public/index.html');
+    response.sendFile(path.join(__dirname, '../../build/index.html'));
   });
 
   app.post('/api/tabledatas', (request, response) => {
@@ -73,12 +73,13 @@ mongoose.connect(dbUrl, { useNewUrlParser: true }, (dbErr) => {
   });
 
   app.delete('/api/tabledatas', (request, response) => {
-    const { id } = request.body;
-    TableData.deleteOne({ _id: id }, (err) => {
+    const { seq } = request.body;
+    const target = seq;
+    TableData.deleteOne({ seq: target }, (err) => {
       if (err) {
         response.status(500).send();
       } else {
-        response.status(200).send(id);
+        response.status(200).send(response.body);
       }
     });
   });
