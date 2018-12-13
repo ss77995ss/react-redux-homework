@@ -1,11 +1,45 @@
 # react-redux-homework &middot; ![Build Status](https://travis-ci.org/ss77995ss/react-redux-homework.svg?branch=react-redux-step1)
 > bootstrap by [razzle](https://github.com/jaredpalmer/razzle)
 
-## Shell command
-* `npm start`		Run & compile the project and show on the Internet
-* `npm test` 		Execute Jest to apply unit testing
-* `npm run` report	Show testing report
+## Get Started
 
+1. install docker
+
+2. To build required docker image
+```
+docker build -t [app name in docker.compose.yml] .
+docker pull mongo
+```
+or
+```
+docker-compose build
+```
+
+3. Start docker swarm mode and add stack to deploy app
+```
+docker swarm init
+docker stack deploy -c [compose_file_name]
+```
+or use `docker-compose` to create container
+```
+docker-compose up
+```
+4. go to `localhost:3000`
+
+## Clean up
+1. Stop services
+```
+docker stack rm [container_name]
+```
+2. Exit swarm mode
+```
+docker swarm leave --force
+```
+3. Removed unused containers and dangling images
+```
+docker system prune
+```
+If using `docker-compose` to create containers, use `docker-compose down` command to exit, then go to step3 to clean exited containers
 
 -------------------------------------------------------------
 
@@ -16,7 +50,7 @@ Learn `react`, `redux` and the ecosystem.
 You need to create a basic CRUD functionality for a issue tracker, like following:
 ![table-example](http://i.imgur.com/tyecoP9.png)
 
-Please follow below steps to do your job:   
+Please follow below steps to do your job:
 
 Step 1
   * Construct your `app` with [starter kits](https://reactjs.org/community/starter-kits.html) and use `React` to construct your view and display above table.
