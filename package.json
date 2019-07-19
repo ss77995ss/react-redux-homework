@@ -4,13 +4,13 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
+    "build": "webpack --config webpack.prod.js && babel ./src -d dist",
     "build:analyze": "ANALYZE=true webpack --config webpack.prod.js",
     "test": "jest",
     "report": "jest --coverage",
     "lint": "./node_modules/.bin/eslint src",
     "lint:fix": "./node_modules/.bin/eslint src --fix",
-    "server": "babel-node ./src/index.js"
+    "server": "node dist/index.js"
   },
   "proxy": "http://localhost:3000/",
   "dependencies": {
@@ -30,17 +30,14 @@
     "**/test/**/*.test.js"
   ],
   "devDependencies": {
+    "@babel/cli": "^7.2.0",
     "@babel/core": "^7.0.1",
     "@babel/node": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "axios-mock-adapter": "^1.15.0",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-loader": "^8.0.2",
-    "babel-plugin-transform-export-extensions": "^6.22.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
+    "babel-loader": "^8.0.4",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^1.0.1",
     "enzyme": "^3.6.0",
@@ -54,7 +51,7 @@
     "eslint-plugin-react": "^7.11.1",
     "html-webpack-plugin": "^3.2.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^23.5.0",
+    "jest": "^23.6.0",
     "jest-cli": "^23.6.0",
     "react-test-renderer": "^16.5.0",
     "redux-mock-store": "^1.5.3",

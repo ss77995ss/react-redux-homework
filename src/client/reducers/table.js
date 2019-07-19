@@ -9,11 +9,10 @@ const table = (state = [], { type, data }) => {
   switch (type) {
   case ROW_CREATER:
     return state.concat([data]);
-  case ROW_DELETER:
-    state.splice(state.indexOf(data), 1);
-    return [
-      ...state,
-    ];
+  case ROW_DELETER: {
+    const newTable = state.filter(({ seq }) => seq !== data.seq);
+    return newTable;
+  }
   case CELL_UPDATER: {
     const { id, name, value } = data;
     return state.map((row) => {

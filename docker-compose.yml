@@ -1,0 +1,29 @@
+version: '3'
+services:
+  app:
+    build: .
+    container_name: 'app'
+    image: react-redux-homework_app
+    deploy:
+      replicas: 5
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '1'
+          memory: 500M
+    ports:
+      - '3000:3000'
+    links:
+      - mongo
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    container_name: 'mongo'
+    volumes:
+      - '/data/db'
+    ports:
+      - '27017:27017'
+    command: 'mongod'
